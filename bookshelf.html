@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>書櫃清單</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .book-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            width: 200px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .book-card:hover {
+            transform: scale(1.05);
+        }
+        .book-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .book-info {
+            margin-top: 10px;
+        }
+        .book-info h3 {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #333;
+        }
+        .book-info p {
+            font-size: 14px;
+            margin: 2px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>書櫃清單</h1>
+    <input type="text" id="searchInput" onkeyup="filterBooks()" placeholder="搜尋書名或作者...">
+    <div class="book-container" id="bookContainer">
+
+        <div class="book-card">
+            <img src="./pic/A_01.jpg" alt="XXX設計圖1">
+            <div class="book-info">
+                <h3>XXX設計圖1</h3>
+                <p>作者：某A1</p>
+                <p>出版：某B1（1980）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_02.jpg" alt="XXX設計圖2">
+            <div class="book-info">
+                <h3>XXX設計圖2</h3>
+                <p>作者：某A2</p>
+                <p>出版：某B2（1981）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_03.jpg" alt="XXX設計圖3">
+            <div class="book-info">
+                <h3>XXX設計圖3</h3>
+                <p>作者：某A3</p>
+                <p>出版：某B3（1982）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_04.jpg" alt="XXX設計圖4">
+            <div class="book-info">
+                <h3>XXX設計圖4</h3>
+                <p>作者：某A4</p>
+                <p>出版：某B4（1983）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_05.jpg" alt="XXX設計圖5">
+            <div class="book-info">
+                <h3>XXX設計圖5</h3>
+                <p>作者：某A5</p>
+                <p>出版：某B5（1984）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_06.jpg" alt="XXX設計圖6">
+            <div class="book-info">
+                <h3>XXX設計圖6</h3>
+                <p>作者：某A6</p>
+                <p>出版：某B6（1985）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_07.jpg" alt="XXX設計圖7">
+            <div class="book-info">
+                <h3>XXX設計圖7</h3>
+                <p>作者：某A7</p>
+                <p>出版：某B7（1986）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_08.jpg" alt="XXX設計圖8">
+            <div class="book-info">
+                <h3>XXX設計圖8</h3>
+                <p>作者：某A8</p>
+                <p>出版：某B8（1987）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_09.jpg" alt="XXX設計圖9">
+            <div class="book-info">
+                <h3>XXX設計圖9</h3>
+                <p>作者：某A9</p>
+                <p>出版：某B9（1988）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_10.jpg" alt="XXX設計圖10">
+            <div class="book-info">
+                <h3>XXX設計圖10</h3>
+                <p>作者：某A10</p>
+                <p>出版：某B10（1989）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_11.jpg" alt="XXX設計圖11">
+            <div class="book-info">
+                <h3>XXX設計圖11</h3>
+                <p>作者：某A11</p>
+                <p>出版：某B11（1990）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_12.jpg" alt="XXX設計圖12">
+            <div class="book-info">
+                <h3>XXX設計圖12</h3>
+                <p>作者：某A12</p>
+                <p>出版：某B12（1991）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_13.jpg" alt="XXX設計圖13">
+            <div class="book-info">
+                <h3>XXX設計圖13</h3>
+                <p>作者：某A13</p>
+                <p>出版：某B13（1992）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_14.jpg" alt="XXX設計圖14">
+            <div class="book-info">
+                <h3>XXX設計圖14</h3>
+                <p>作者：某A14</p>
+                <p>出版：某B14（1993）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_15.jpg" alt="XXX設計圖15">
+            <div class="book-info">
+                <h3>XXX設計圖15</h3>
+                <p>作者：某A15</p>
+                <p>出版：某B15（1994）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_16.jpg" alt="XXX設計圖16">
+            <div class="book-info">
+                <h3>XXX設計圖16</h3>
+                <p>作者：某A16</p>
+                <p>出版：某B16（1995）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+        <div class="book-card">
+            <img src="./pic/A_17.jpg" alt="XXX設計圖17">
+            <div class="book-info">
+                <h3>XXX設計圖17</h3>
+                <p>作者：某A17</p>
+                <p>出版：某B17（1996）</p>
+                <p>版次：1</p>
+                <p>書櫃：設計組共用櫃A</p>
+            </div>
+        </div>
+    
+    </div>
+    <script>
+        function filterBooks() {
+            var input = document.getElementById("searchInput");
+            var filter = input.value.toLowerCase();
+            var cards = document.getElementsByClassName("book-card");
+            for (var i = 0; i < cards.length; i++) {
+                var title = cards[i].querySelector("h3").textContent.toLowerCase();
+                var author = cards[i].querySelector("p").textContent.toLowerCase();
+                if (title.includes(filter) || author.includes(filter)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
