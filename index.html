@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -7,25 +6,35 @@
     <title>書櫃清單</title>
     <style>
         body {
-            font-family: "Segoe UI", sans-serif;
+            font-family: "Helvetica Neue", sans-serif;
             background-color: #f4f4f9;
-            margin: 20px;
+            margin: 0;
+            padding: 20px;
         }
-        #searchBox {
-            width: 300px;
-            padding: 10px;
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 12px 20px;
             margin-bottom: 20px;
+            border: 1px solid #ccc;
             font-size: 16px;
         }
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
         .book-card {
-            display: inline-block;
-            width: 200px;
-            margin: 10px;
-            padding: 10px;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #fff;
             border-radius: 8px;
-            vertical-align: top;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            width: 200px;
+            padding: 15px;
+            text-align: center;
             transition: transform 0.2s;
         }
         .book-card:hover {
@@ -36,522 +45,526 @@
             height: auto;
             border-radius: 4px;
         }
-        .book-title {
-            font-weight: bold;
+        .book-info {
             margin-top: 10px;
         }
-        .book-author {
-            color: #555;
+        .book-info h3 {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #333;
+        }
+        .book-info p {
+            font-size: 14px;
+            margin: 2px 0;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <input type="text" id="searchBox" onkeyup="searchBooks()" placeholder="搜尋書名或作者...">
-    <div id="bookshelf">
+    <h1>書櫃清單</h1>
+    <input type="text" id="searchInput" onkeyup="filterBooks()" placeholder="搜尋書名或作者...">
+    <div class="book-container" id="bookContainer">
 
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：VEN TE CHOW</div>
-        <div>出版社：McGraw-Hill</div>
-        <div>年份：1964.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_01.jpg" alt="HANDBOOK OF APPLIED HYDROLOGY Compendium of Water-resources Technology">
+        <h3>HANDBOOK OF APPLIED HYDROLOGY Compendium of Water-resources Technology</h3>
+        <p>作者：VEN TE CHOW</p>
+        <p>出版：McGraw-Hill</p>
+        <p>年份：1964.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：JOHN E. LOTHERS</div>
-        <div>出版社：Mercury Learning and Information</div>
-        <div>年份：2020.0</div>
-        <div>版次：3</div>
-        <div>位置：</div>
+        <img src="./pic/A_02.jpg" alt="DESIGN IN STRUCTURAL STEEL 3RD EDITION">
+        <h3>DESIGN IN STRUCTURAL STEEL 3RD EDITION</h3>
+        <p>作者：JOHN E. LOTHERS</p>
+        <p>出版：Mercury Learning and Information</p>
+        <p>年份：2020.0</p>
+        <p>版次：3</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：滋賀県土木交通部</div>
-        <div>出版社：滋賀県土木交通部</div>
-        <div>年份：2010.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_03.jpg" alt="設計便覧（案）砂防編">
+        <h3>設計便覧（案）砂防編</h3>
+        <p>作者：滋賀県土木交通部</p>
+        <p>出版：滋賀県土木交通部</p>
+        <p>年份：2010.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：国土交通省国士技術政策綜合研究所</div>
-        <div>出版社：国土交通省国士技術政策綜合研究所</div>
-        <div>年份：2007.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_04.jpg" alt="土石流•流木 策設計技術指針解說">
+        <h3>土石流•流木 策設計技術指針解說</h3>
+        <p>作者：国土交通省国士技術政策綜合研究所</p>
+        <p>出版：国土交通省国士技術政策綜合研究所</p>
+        <p>年份：2007.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：国土交通省国士技術政策綜合研究所</div>
-        <div>出版社：国土交通省国士技術政策綜合研究所</div>
-        <div>年份：2007.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_05.jpg" alt="砂防基本計画策定指針（土石流•流木策編）解說">
+        <h3>砂防基本計画策定指針（土石流•流木策編）解說</h3>
+        <p>作者：国土交通省国士技術政策綜合研究所</p>
+        <p>出版：国土交通省国士技術政策綜合研究所</p>
+        <p>年份：2007.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：A.A. BALKEMA</div>
-        <div>出版社：BROOKFIELD</div>
-        <div>年份：1992.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_06.jpg" alt="Mobile barrages and intakes on sediment transporting rivers">
+        <h3>Mobile barrages and intakes on sediment transporting rivers</h3>
+        <p>作者：A.A. BALKEMA</p>
+        <p>出版：BROOKFIELD </p>
+        <p>年份：1992.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：中國土木水利工程學會環境工程委員會</div>
-        <div>出版社：中國土木水利工程學會環境工程委員會</div>
-        <div>年份：1984.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_07.jpg" alt="下水道管渠工程設計指南">
+        <h3>下水道管渠工程設計指南</h3>
+        <p>作者：中國土木水利工程學會環境工程委員會</p>
+        <p>出版：中國土木水利工程學會環境工程委員會</p>
+        <p>年份：1984.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：經濟部水資源統一規劃委員會</div>
-        <div>出版社：經濟部水資源統一規劃委員會</div>
-        <div>年份：1971.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_08.jpg" alt="石門水庫增建排洪隧道水工模型裁驗報告">
+        <h3>石門水庫增建排洪隧道水工模型裁驗報告</h3>
+        <p>作者：經濟部水資源統一規劃委員會</p>
+        <p>出版：經濟部水資源統一規劃委員會</p>
+        <p>年份：1971.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：蘇宗智</div>
-        <div>出版社：台北市政府工務局養護工程處</div>
-        <div>年份：1974.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_09.jpg" alt="防洪幫浦設計之研究">
+        <h3>防洪幫浦設計之研究</h3>
+        <p>作者：蘇宗智</p>
+        <p>出版：台北市政府工務局養護工程處</p>
+        <p>年份：1974.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：K SUBRAMANYA</div>
-        <div>出版社：McGraw-Hill Education India</div>
-        <div>年份：2019.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_10.jpg" alt="明渠水力學Flow in Open Channels">
+        <h3>明渠水力學Flow in Open Channels</h3>
+        <p>作者：K SUBRAMANYA</p>
+        <p>出版：McGraw-Hill Education India</p>
+        <p>年份：2019.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：原著者：Streeter/Wylie/譯述者：曾昭仁</div>
-        <div>出版社：乾泰圖書有限公司</div>
-        <div>年份：2015.0</div>
-        <div>版次：8</div>
-        <div>位置：</div>
+        <img src="./pic/A_11.jpg" alt="流體力學FLUID MECHANICS（下册）第八版">
+        <h3>流體力學FLUID MECHANICS（下册）第八版</h3>
+        <p>作者：原著者：Streeter/Wylie/譯述者：曾昭仁</p>
+        <p>出版：乾泰圖書有限公司</p>
+        <p>年份：2015.0</p>
+        <p>版次：8</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：周寧</div>
-        <div>出版社：九功出版社</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_12.jpg" alt="流體力學應試手冊">
+        <h3>流體力學應試手冊</h3>
+        <p>作者：周寧</p>
+        <p>出版：九功出版社</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：謝平城</div>
-        <div>出版社：五南出版社</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_13.jpg" alt="渠道水力學">
+        <h3>渠道水力學</h3>
+        <p>作者：謝平城</p>
+        <p>出版：五南出版社</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：徐田璋</div>
-        <div>出版社：中國農業工程學會</div>
-        <div>年份：1976.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_14.jpg" alt="渠道工程">
+        <h3>渠道工程</h3>
+        <p>作者：徐田璋</p>
+        <p>出版：中國農業工程學會</p>
+        <p>年份：1976.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：吳文隆</div>
-        <div>出版社：九華文教機構</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_15.jpg" alt="土壤力學與基礎設計（補充編）">
+        <h3>土壤力學與基礎設計（補充編）</h3>
+        <p>作者：吳文隆</p>
+        <p>出版：九華文教機構</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：徐義人</div>
-        <div>出版社：大中國圖書公司</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_16.jpg" alt="應用水文學">
+        <h3>應用水文學</h3>
+        <p>作者：徐義人</p>
+        <p>出版：大中國圖書公司</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：馮鍾郁</div>
-        <div>出版社：中國土木水利工程學會</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_17.jpg" alt="水資源規劃">
+        <h3>水資源規劃</h3>
+        <p>作者：馮鍾郁</p>
+        <p>出版：中國土木水利工程學會</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：林元弼，湯明敏，包澄瀾，陳森娥</div>
-        <div>出版社：明文書局</div>
-        <div>年份：1991.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_18.jpg" alt="天氣學">
+        <h3>天氣學</h3>
+        <p>作者：林元弼，湯明敏，包澄瀾，陳森娥</p>
+        <p>出版：明文書局</p>
+        <p>年份：1991.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：長盛工程顧問有限公司</div>
-        <div>出版社：行政院農業委員會林務局南投林區管理處</div>
-        <div>年份：2008.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_19.jpg" alt="奧萬大遊樂區萬大溪上游整體調查規劃成果報告書">
+        <h3>奧萬大遊樂區萬大溪上游整體調查規劃成果報告書</h3>
+        <p>作者：長盛工程顧問有限公司</p>
+        <p>出版：行政院農業委員會林務局南投林區管理處</p>
+        <p>年份：2008.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：Andrew L. Simon</div>
-        <div>出版社：John Wiley & Sons, Inc.</div>
-        <div>年份：1981.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_20.jpg" alt="Practical hydraulics">
+        <h3>Practical hydraulics</h3>
+        <p>作者：Andrew L. Simon</p>
+        <p>出版：John Wiley & Sons, Inc.</p>
+        <p>年份：1981.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：World Meteorological Organization</div>
-        <div>出版社：Secretariat of the World Meteorological Organization, 1986</div>
-        <div>年份：1986.0</div>
-        <div>版次：2</div>
-        <div>位置：</div>
+        <img src="./pic/A_21.jpg" alt="Manual For Estimation of Probable Maximum Precipitation: World Meteorological Organization">
+        <h3>Manual For Estimation of Probable Maximum Precipitation: World Meteorological Organization</h3>
+        <p>作者：World Meteorological Organization</p>
+        <p>出版：Secretariat of the World Meteorological Organization, 1986</p>
+        <p>年份：1986.0</p>
+        <p>版次：2</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：Ven Te Chow, David R. Maidment, Larry W. Mays</div>
-        <div>出版社：McGraw-Hill,National Library Board Singapore</div>
-        <div>年份：1988.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_22.jpg" alt="Applied Hydrology">
+        <h3>Applied Hydrology</h3>
+        <p>作者：Ven Te Chow, David R. Maidment, Larry W. Mays</p>
+        <p>出版：McGraw-Hill,National Library Board Singapore</p>
+        <p>年份：1988.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：王如意/易任</div>
-        <div>出版社：國立編譯館</div>
-        <div>年份：2005.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_23.jpg" alt="應用水文學新編上冊">
+        <h3>應用水文學新編上冊</h3>
+        <p>作者：王如意/易任</p>
+        <p>出版：國立編譯館</p>
+        <p>年份：2005.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：王如意/易任</div>
-        <div>出版社：國立編譯館</div>
-        <div>年份：2005.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_24.jpg" alt="應用水文學新編下冊">
+        <h3>應用水文學新編下冊</h3>
+        <p>作者：王如意/易任</p>
+        <p>出版：國立編譯館</p>
+        <p>年份：2005.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：George C. Canavos</div>
-        <div>出版社：Little, Brown and Company</div>
-        <div>年份：1984.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_25.jpg" alt="Applied probability and statistical methods">
+        <h3>Applied probability and statistical methods</h3>
+        <p>作者： George C. Canavos</p>
+        <p>出版：Little, Brown and Company</p>
+        <p>年份：1984.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：E. E. Lewis</div>
-        <div>出版社：John Wiley & Sons, Inc.</div>
-        <div>年份：1995.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_26.jpg" alt="Introduction to Reliability Engineering">
+        <h3>Introduction to Reliability Engineering</h3>
+        <p>作者：E. E. Lewis</p>
+        <p>出版：John Wiley & Sons, Inc.</p>
+        <p>年份：1995.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：John O. Rawlings, Sastry G. Pantula, David A. Dickey</div>
-        <div>出版社：Pacific Grove, Calif. : Wadsworth & Brooks/Cole Advanced Books & Software</div>
-        <div>年份：1988.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_27.jpg" alt="Applied Regression Analysis A Research Tool">
+        <h3>Applied Regression Analysis A Research Tool</h3>
+        <p>作者：John O. Rawlings, Sastry G. Pantula, David A. Dickey</p>
+        <p>出版：Pacific Grove, Calif. : Wadsworth & Brooks/Cole Advanced Books & Software</p>
+        <p>年份：1988.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣英文雜誌社有限公司</div>
-        <div>出版社：台灣英文雜誌社有限公司</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_28.jpg" alt="契約英文">
+        <h3>契約英文</h3>
+        <p>作者：台灣英文雜誌社有限公司</p>
+        <p>出版：台灣英文雜誌社有限公司</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：許燕輝</div>
-        <div>出版社：詹式書局</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_29.jpg" alt="營建工程英文">
+        <h3>營建工程英文</h3>
+        <p>作者：許燕輝</p>
+        <p>出版：詹式書局</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：財團法人中興工程顧問社</div>
-        <div>出版社：中興工程顧問股份有限公司</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_30.jpg" alt="八八水災災害調查成果與復建工程建議">
+        <h3>八八水災災害調查成果與復建工程建議</h3>
+        <p>作者：財團法人中興工程顧問社</p>
+        <p>出版：中興工程顧問股份有限公司</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：中興工程顧問股份有限公司</div>
-        <div>出版社：翡翠水庫管理局</div>
-        <div>年份：1994.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_31.jpg" alt="翡翠水庫整體安全檢查與評估綜合報告">
+        <h3>翡翠水庫整體安全檢查與評估綜合報告</h3>
+        <p>作者：中興工程顧問股份有限公司</p>
+        <p>出版：翡翠水庫管理局</p>
+        <p>年份：1994.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：徐晉淮/林與我</div>
-        <div>出版社：中央氣象局氣象科技中心</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_32.jpg" alt="侵襲台灣颱風之分析研究---雨量分佈">
+        <h3>侵襲台灣颱風之分析研究---雨量分佈</h3>
+        <p>作者：徐晉淮/林與我</p>
+        <p>出版：中央氣象局氣象科技中心</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：中興工程顧問社</div>
-        <div>出版社：中興工程顧問社</div>
-        <div>年份：1974.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_33.jpg" alt="石門水庫最大可能洪水初步研究報告">
+        <h3>石門水庫最大可能洪水初步研究報告</h3>
+        <p>作者：中興工程顧問社</p>
+        <p>出版：中興工程顧問社</p>
+        <p>年份：1974.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：中興工程顧問社</div>
-        <div>出版社：中興工程顧問社</div>
-        <div>年份：1978.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_34.jpg" alt="石門水庫最大可能暴雨量研究">
+        <h3>石門水庫最大可能暴雨量研究</h3>
+        <p>作者：中興工程顧問社</p>
+        <p>出版：中興工程顧問社</p>
+        <p>年份：1978.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：王時鼎/劉廣英/曲克恭/林則銘/黃中成/謝維權</div>
-        <div>出版社：nan</div>
-        <div>年份：1977.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_35.jpg" alt="翡翠谷壩址最大可能暴雨量研究">
+        <h3>翡翠谷壩址最大可能暴雨量研究</h3>
+        <p>作者：王時鼎/劉廣英/曲克恭/林則銘/黃中成/謝維權</p>
+        <p>出版：nan</p>
+        <p>年份：1977.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣電力股份有限公司/財團法人中興工程顧問社</div>
-        <div>出版社：台灣電力股份有限公司/財團法人中興工程顧問社</div>
-        <div>年份：1987.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_36.jpg" alt="翡翠水庫工程竣工報告第一冊">
+        <h3>翡翠水庫工程竣工報告第一冊</h3>
+        <p>作者：台灣電力股份有限公司/財團法人中興工程顧問社</p>
+        <p>出版：台灣電力股份有限公司/財團法人中興工程顧問社</p>
+        <p>年份：1987.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣電力股份有限公司/財團法人中興工程顧問社</div>
-        <div>出版社：台灣電力股份有限公司/財團法人中興工程顧問社</div>
-        <div>年份：1987.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_37.jpg" alt="翡翠水庫工程竣工報告第二冊">
+        <h3>翡翠水庫工程竣工報告第二冊</h3>
+        <p>作者：台灣電力股份有限公司/財團法人中興工程顧問社</p>
+        <p>出版：台灣電力股份有限公司/財團法人中興工程顧問社</p>
+        <p>年份：1987.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣電力股份有限公司/財團法人中興工程顧問社</div>
-        <div>出版社：台灣電力股份有限公司/財團法人中興工程顧問社</div>
-        <div>年份：1987.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_38.jpg" alt="翡翠水庫工程竣工報告第三冊">
+        <h3>翡翠水庫工程竣工報告第三冊</h3>
+        <p>作者：台灣電力股份有限公司/財團法人中興工程顧問社</p>
+        <p>出版：台灣電力股份有限公司/財團法人中興工程顧問社</p>
+        <p>年份：1987.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣電力股份有限公司/財團法人中興工程顧問社</div>
-        <div>出版社：台灣電力股份有限公司/財團法人中興工程顧問社</div>
-        <div>年份：1987.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_39.jpg" alt="翡翠水庫工程竣工報告第四冊">
+        <h3>翡翠水庫工程竣工報告第四冊</h3>
+        <p>作者：台灣電力股份有限公司/財團法人中興工程顧問社</p>
+        <p>出版：台灣電力股份有限公司/財團法人中興工程顧問社</p>
+        <p>年份：1987.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣電力股份有限公司/財團法人中興工程顧問社</div>
-        <div>出版社：台灣電力股份有限公司/財團法人中興工程顧問社</div>
-        <div>年份：1987.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_40.jpg" alt="翡翠水庫工程竣工報告第五冊">
+        <h3>翡翠水庫工程竣工報告第五冊</h3>
+        <p>作者：台灣電力股份有限公司/財團法人中興工程顧問社</p>
+        <p>出版：台灣電力股份有限公司/財團法人中興工程顧問社</p>
+        <p>年份：1987.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台北市政府工務局養護工程處</div>
-        <div>出版社：台北市政府工務局養護工程處</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_41.jpg" alt="全市抽水站系統圖及其他圖表">
+        <h3>全市抽水站系統圖及其他圖表</h3>
+        <p>作者：台北市政府工務局養護工程處</p>
+        <p>出版：台北市政府工務局養護工程處</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣省水利局南部水資源開發工程處</div>
-        <div>出版社：台灣省水利局南部水資源開發工程處</div>
-        <div>年份：1993.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_42.jpg" alt="牡丹水庫溢洪道工程(機電部分)基本設計圖表">
+        <h3>牡丹水庫溢洪道工程(機電部分)基本設計圖表</h3>
+        <p>作者：台灣省水利局南部水資源開發工程處</p>
+        <p>出版：台灣省水利局南部水資源開發工程處</p>
+        <p>年份：1993.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣省水利局南部水資源開發工程處</div>
-        <div>出版社：台灣省水利局南部水資源開發工程處</div>
-        <div>年份：1991.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_43.jpg" alt="牡丹水庫大壩工程基本設計圖表">
+        <h3>牡丹水庫大壩工程基本設計圖表</h3>
+        <p>作者：台灣省水利局南部水資源開發工程處</p>
+        <p>出版：台灣省水利局南部水資源開發工程處</p>
+        <p>年份：1991.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣省水利局南部水資源開發工程處</div>
-        <div>出版社：台灣省水利局南部水資源開發工程處</div>
-        <div>年份：1993.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_44.jpg" alt="牡丹水庫溢洪道工程(機電部分)基本設計圖表">
+        <h3>牡丹水庫溢洪道工程(機電部分)基本設計圖表</h3>
+        <p>作者：台灣省水利局南部水資源開發工程處</p>
+        <p>出版：台灣省水利局南部水資源開發工程處</p>
+        <p>年份：1993.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣省水利局南部水資源開發工程處</div>
-        <div>出版社：台灣省水利局南部水資源開發工程處</div>
-        <div>年份：1991.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_45.jpg" alt="牡丹水庫取排水設施工程基本設計圖表">
+        <h3>牡丹水庫取排水設施工程基本設計圖表</h3>
+        <p>作者：台灣省水利局南部水資源開發工程處</p>
+        <p>出版：台灣省水利局南部水資源開發工程處</p>
+        <p>年份：1991.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣電力公司</div>
-        <div>出版社：台灣電力公司</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_46.jpg" alt="鯉魚潭士林發電計畫士林壩詳細設計圖(一)">
+        <h3>鯉魚潭士林發電計畫士林壩詳細設計圖(一)</h3>
+        <p>作者：台灣電力公司</p>
+        <p>出版：台灣電力公司</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣電力公司</div>
-        <div>出版社：台灣電力公司</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_47.jpg" alt="鯉魚潭士林發電計畫士林壩詳細設計圖(二)">
+        <h3>鯉魚潭士林發電計畫士林壩詳細設計圖(二)</h3>
+        <p>作者：台灣電力公司</p>
+        <p>出版：台灣電力公司</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣電力公司營建處</div>
-        <div>出版社：nan</div>
-        <div>年份：1975.0</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_48.jpg" alt="達見水力發電工程機電圖集">
+        <h3>達見水力發電工程機電圖集</h3>
+        <p>作者：台灣電力公司營建處</p>
+        <p>出版：nan</p>
+        <p>年份：1975.0</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     <div class="book-card">
-        <img src="./default.jpg" alt="">
-        <div class="book-title"></div>
-        <div class="book-author">作者：台灣電力公司</div>
-        <div>出版社：台灣電力公司</div>
-        <div>年份：nan</div>
-        <div>版次：1</div>
-        <div>位置：</div>
+        <img src="./pic/A_49.jpg" alt="馬鞍壩竣工圖">
+        <h3>馬鞍壩竣工圖</h3>
+        <p>作者：台灣電力公司</p>
+        <p>出版：台灣電力公司</p>
+        <p>年份：nan</p>
+        <p>版次：1</p>
+        <p>位置：設計組共用櫃A</p>
     </div>
     
     </div>
     <script>
         function searchBooks() {
-            var input = document.getElementById("searchBox").value.toLowerCase();
-            var cards = document.getElementsByClassName("book-card");
+            var input = document.getElementById('searchInput');
+            var filter = input.value.toLowerCase();
+            var cards = document.getElementsByClassName('book-card');
             for (var i = 0; i < cards.length; i++) {
-                var title = cards[i].getElementsByClassName("book-title")[0].innerText.toLowerCase();
-                var author = cards[i].getElementsByClassName("book-author")[0].innerText.toLowerCase();
-                if (title.includes(input) || author.includes(input)) {
-                    cards[i].style.display = "inline-block";
-                } else {
-                    cards[i].style.display = "none";
-                }
+                var card = cards[i];
+                var text = card.textContent.toLowerCase();
+                card.style.display = text.includes(filter) ? '' : 'none';
             }
         }
     </script>
