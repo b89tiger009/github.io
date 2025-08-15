@@ -557,14 +557,18 @@
     
     </div>
     <script>
-        function searchBooks() {
-            var input = document.getElementById('searchInput');
+        function filterBooks() {
+            var input = document.getElementById("searchInput");
             var filter = input.value.toLowerCase();
-            var cards = document.getElementsByClassName('book-card');
+            var cards = document.getElementsByClassName("book-card");
             for (var i = 0; i < cards.length; i++) {
-                var card = cards[i];
-                var text = card.textContent.toLowerCase();
-                card.style.display = text.includes(filter) ? '' : 'none';
+                var title = cards[i].querySelector("h3").textContent.toLowerCase();
+                var author = cards[i].querySelector("p").textContent.toLowerCase();
+                if (title.includes(filter) || author.includes(filter)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
             }
         }
     </script>
