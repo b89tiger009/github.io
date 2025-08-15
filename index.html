@@ -1,40 +1,31 @@
 
+
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>書櫃清單</title>
     <style>
         body {
-            font-family: "Helvetica Neue", sans-serif;
+            font-family: "Segoe UI", sans-serif;
             background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
+            margin: 20px;
         }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        #searchInput {
-            width: 100%;
-            padding: 12px 20px;
+        #searchBox {
+            width: 300px;
+            padding: 10px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
             font-size: 16px;
         }
-        .book-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
         .book-card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: inline-block;
             width: 200px;
-            padding: 15px;
-            text-align: center;
+            margin: 10px;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            vertical-align: top;
             transition: transform 0.2s;
         }
         .book-card:hover {
@@ -45,224 +36,519 @@
             height: auto;
             border-radius: 4px;
         }
-        .book-info {
+        .book-title {
+            font-weight: bold;
             margin-top: 10px;
         }
-        .book-info h3 {
-            font-size: 16px;
-            margin: 5px 0;
-            color: #333;
-        }
-        .book-info p {
-            font-size: 14px;
-            margin: 2px 0;
-            color: #666;
+        .book-author {
+            color: #555;
         }
     </style>
 </head>
 <body>
-    <h1>書櫃清單</h1>
-    <input type="text" id="searchInput" onkeyup="filterBooks()" placeholder="搜尋書名或作者...">
-    <div class="book-container" id="bookContainer">
+    <input type="text" id="searchBox" onkeyup="searchBooks()" placeholder="搜尋書名或作者...">
+    <div id="bookshelf">
 
-        <div class="book-card">
-            <img src="./pic/A_01.jpg" alt="XXX設計圖1">
-            <div class="book-info">
-                <h3>XXX設計圖1</h3>
-                <p>作者：某A1</p>
-                <p>出版：某B1（1980）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：VEN TE CHOW</div>
+        <div>出版社：McGraw-Hill</div>
+        <div>年份：1964.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_02.jpg" alt="XXX設計圖2">
-            <div class="book-info">
-                <h3>XXX設計圖2</h3>
-                <p>作者：某A2</p>
-                <p>出版：某B2（1981）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：JOHN E. LOTHERS</div>
+        <div>出版社：Mercury Learning and Information</div>
+        <div>年份：2020.0</div>
+        <div>版次：3</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_03.jpg" alt="XXX設計圖3">
-            <div class="book-info">
-                <h3>XXX設計圖3</h3>
-                <p>作者：某A3</p>
-                <p>出版：某B3（1982）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：滋賀県土木交通部</div>
+        <div>出版社：滋賀県土木交通部</div>
+        <div>年份：2010.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_04.jpg" alt="XXX設計圖4">
-            <div class="book-info">
-                <h3>XXX設計圖4</h3>
-                <p>作者：某A4</p>
-                <p>出版：某B4（1983）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：国土交通省国士技術政策綜合研究所</div>
+        <div>出版社：国土交通省国士技術政策綜合研究所</div>
+        <div>年份：2007.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_05.jpg" alt="XXX設計圖5">
-            <div class="book-info">
-                <h3>XXX設計圖5</h3>
-                <p>作者：某A5</p>
-                <p>出版：某B5（1984）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：国土交通省国士技術政策綜合研究所</div>
+        <div>出版社：国土交通省国士技術政策綜合研究所</div>
+        <div>年份：2007.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_06.jpg" alt="XXX設計圖6">
-            <div class="book-info">
-                <h3>XXX設計圖6</h3>
-                <p>作者：某A6</p>
-                <p>出版：某B6（1985）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：A.A. BALKEMA</div>
+        <div>出版社：BROOKFIELD</div>
+        <div>年份：1992.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_07.jpg" alt="XXX設計圖7">
-            <div class="book-info">
-                <h3>XXX設計圖7</h3>
-                <p>作者：某A7</p>
-                <p>出版：某B7（1986）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：中國土木水利工程學會環境工程委員會</div>
+        <div>出版社：中國土木水利工程學會環境工程委員會</div>
+        <div>年份：1984.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_08.jpg" alt="XXX設計圖8">
-            <div class="book-info">
-                <h3>XXX設計圖8</h3>
-                <p>作者：某A8</p>
-                <p>出版：某B8（1987）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：經濟部水資源統一規劃委員會</div>
+        <div>出版社：經濟部水資源統一規劃委員會</div>
+        <div>年份：1971.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_09.jpg" alt="XXX設計圖9">
-            <div class="book-info">
-                <h3>XXX設計圖9</h3>
-                <p>作者：某A9</p>
-                <p>出版：某B9（1988）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：蘇宗智</div>
+        <div>出版社：台北市政府工務局養護工程處</div>
+        <div>年份：1974.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_10.jpg" alt="XXX設計圖10">
-            <div class="book-info">
-                <h3>XXX設計圖10</h3>
-                <p>作者：某A10</p>
-                <p>出版：某B10（1989）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：K SUBRAMANYA</div>
+        <div>出版社：McGraw-Hill Education India</div>
+        <div>年份：2019.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_11.jpg" alt="XXX設計圖11">
-            <div class="book-info">
-                <h3>XXX設計圖11</h3>
-                <p>作者：某A11</p>
-                <p>出版：某B11（1990）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：原著者：Streeter/Wylie/譯述者：曾昭仁</div>
+        <div>出版社：乾泰圖書有限公司</div>
+        <div>年份：2015.0</div>
+        <div>版次：8</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_12.jpg" alt="XXX設計圖12">
-            <div class="book-info">
-                <h3>XXX設計圖12</h3>
-                <p>作者：某A12</p>
-                <p>出版：某B12（1991）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：周寧</div>
+        <div>出版社：九功出版社</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_13.jpg" alt="XXX設計圖13">
-            <div class="book-info">
-                <h3>XXX設計圖13</h3>
-                <p>作者：某A13</p>
-                <p>出版：某B13（1992）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：謝平城</div>
+        <div>出版社：五南出版社</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_14.jpg" alt="XXX設計圖14">
-            <div class="book-info">
-                <h3>XXX設計圖14</h3>
-                <p>作者：某A14</p>
-                <p>出版：某B14（1993）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：徐田璋</div>
+        <div>出版社：中國農業工程學會</div>
+        <div>年份：1976.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_15.jpg" alt="XXX設計圖15">
-            <div class="book-info">
-                <h3>XXX設計圖15</h3>
-                <p>作者：某A15</p>
-                <p>出版：某B15（1994）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：吳文隆</div>
+        <div>出版社：九華文教機構</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_16.jpg" alt="XXX設計圖16">
-            <div class="book-info">
-                <h3>XXX設計圖16</h3>
-                <p>作者：某A16</p>
-                <p>出版：某B16（1995）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：徐義人</div>
+        <div>出版社：大中國圖書公司</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
-        <div class="book-card">
-            <img src="./pic/A_17.jpg" alt="XXX設計圖17">
-            <div class="book-info">
-                <h3>XXX設計圖17</h3>
-                <p>作者：某A17</p>
-                <p>出版：某B17（1996）</p>
-                <p>版次：1</p>
-                <p>書櫃：設計組共用櫃A</p>
-            </div>
-        </div>
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：馮鍾郁</div>
+        <div>出版社：中國土木水利工程學會</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：林元弼，湯明敏，包澄瀾，陳森娥</div>
+        <div>出版社：明文書局</div>
+        <div>年份：1991.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：長盛工程顧問有限公司</div>
+        <div>出版社：行政院農業委員會林務局南投林區管理處</div>
+        <div>年份：2008.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：Andrew L. Simon</div>
+        <div>出版社：John Wiley & Sons, Inc.</div>
+        <div>年份：1981.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：World Meteorological Organization</div>
+        <div>出版社：Secretariat of the World Meteorological Organization, 1986</div>
+        <div>年份：1986.0</div>
+        <div>版次：2</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：Ven Te Chow, David R. Maidment, Larry W. Mays</div>
+        <div>出版社：McGraw-Hill,National Library Board Singapore</div>
+        <div>年份：1988.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：王如意/易任</div>
+        <div>出版社：國立編譯館</div>
+        <div>年份：2005.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：王如意/易任</div>
+        <div>出版社：國立編譯館</div>
+        <div>年份：2005.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：George C. Canavos</div>
+        <div>出版社：Little, Brown and Company</div>
+        <div>年份：1984.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：E. E. Lewis</div>
+        <div>出版社：John Wiley & Sons, Inc.</div>
+        <div>年份：1995.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：John O. Rawlings, Sastry G. Pantula, David A. Dickey</div>
+        <div>出版社：Pacific Grove, Calif. : Wadsworth & Brooks/Cole Advanced Books & Software</div>
+        <div>年份：1988.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣英文雜誌社有限公司</div>
+        <div>出版社：台灣英文雜誌社有限公司</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：許燕輝</div>
+        <div>出版社：詹式書局</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：財團法人中興工程顧問社</div>
+        <div>出版社：中興工程顧問股份有限公司</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：中興工程顧問股份有限公司</div>
+        <div>出版社：翡翠水庫管理局</div>
+        <div>年份：1994.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：徐晉淮/林與我</div>
+        <div>出版社：中央氣象局氣象科技中心</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：中興工程顧問社</div>
+        <div>出版社：中興工程顧問社</div>
+        <div>年份：1974.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：中興工程顧問社</div>
+        <div>出版社：中興工程顧問社</div>
+        <div>年份：1978.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：王時鼎/劉廣英/曲克恭/林則銘/黃中成/謝維權</div>
+        <div>出版社：nan</div>
+        <div>年份：1977.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣電力股份有限公司/財團法人中興工程顧問社</div>
+        <div>出版社：台灣電力股份有限公司/財團法人中興工程顧問社</div>
+        <div>年份：1987.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣電力股份有限公司/財團法人中興工程顧問社</div>
+        <div>出版社：台灣電力股份有限公司/財團法人中興工程顧問社</div>
+        <div>年份：1987.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣電力股份有限公司/財團法人中興工程顧問社</div>
+        <div>出版社：台灣電力股份有限公司/財團法人中興工程顧問社</div>
+        <div>年份：1987.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣電力股份有限公司/財團法人中興工程顧問社</div>
+        <div>出版社：台灣電力股份有限公司/財團法人中興工程顧問社</div>
+        <div>年份：1987.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣電力股份有限公司/財團法人中興工程顧問社</div>
+        <div>出版社：台灣電力股份有限公司/財團法人中興工程顧問社</div>
+        <div>年份：1987.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台北市政府工務局養護工程處</div>
+        <div>出版社：台北市政府工務局養護工程處</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣省水利局南部水資源開發工程處</div>
+        <div>出版社：台灣省水利局南部水資源開發工程處</div>
+        <div>年份：1993.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣省水利局南部水資源開發工程處</div>
+        <div>出版社：台灣省水利局南部水資源開發工程處</div>
+        <div>年份：1991.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣省水利局南部水資源開發工程處</div>
+        <div>出版社：台灣省水利局南部水資源開發工程處</div>
+        <div>年份：1993.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣省水利局南部水資源開發工程處</div>
+        <div>出版社：台灣省水利局南部水資源開發工程處</div>
+        <div>年份：1991.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣電力公司</div>
+        <div>出版社：台灣電力公司</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣電力公司</div>
+        <div>出版社：台灣電力公司</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣電力公司營建處</div>
+        <div>出版社：nan</div>
+        <div>年份：1975.0</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
+    
+    <div class="book-card">
+        <img src="./default.jpg" alt="">
+        <div class="book-title"></div>
+        <div class="book-author">作者：台灣電力公司</div>
+        <div>出版社：台灣電力公司</div>
+        <div>年份：nan</div>
+        <div>版次：1</div>
+        <div>位置：</div>
+    </div>
     
     </div>
     <script>
-        function filterBooks() {
-            var input = document.getElementById("searchInput");
-            var filter = input.value.toLowerCase();
+        function searchBooks() {
+            var input = document.getElementById("searchBox").value.toLowerCase();
             var cards = document.getElementsByClassName("book-card");
             for (var i = 0; i < cards.length; i++) {
-                var title = cards[i].querySelector("h3").textContent.toLowerCase();
-                var author = cards[i].querySelector("p").textContent.toLowerCase();
-                if (title.includes(filter) || author.includes(filter)) {
-                    cards[i].style.display = "";
+                var title = cards[i].getElementsByClassName("book-title")[0].innerText.toLowerCase();
+                var author = cards[i].getElementsByClassName("book-author")[0].innerText.toLowerCase();
+                if (title.includes(input) || author.includes(input)) {
+                    cards[i].style.display = "inline-block";
                 } else {
                     cards[i].style.display = "none";
                 }
